@@ -1,0 +1,22 @@
+{
+  "name": "cypresstest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/cleibsonsilva94/CypressTestes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cleibsonsilva94/CypressTestes/issues"
+  },
+  "homepage": "https://github.com/cleibsonsilva94/CypressTestes#readme",
+  "devDependencies": {
+    "cypress": "^13.13.0"
+  }
+}
