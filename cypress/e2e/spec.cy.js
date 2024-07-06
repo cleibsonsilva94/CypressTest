@@ -43,7 +43,7 @@ describe('Aprendendo conceitos Cypress', () => {
     cy.contains('Your email or password is incorrect!');
   });
 
-    it.only('2 - Acessando home da página Automation Exercise', () => {
+    it('2 - Acessando home da página Automation Exercise', () => {
     cy.visit('https://automationexercise.com/');
     cy.contains('Automati');
     cy.get('h1'); // acessando tag 
@@ -55,14 +55,14 @@ describe('Aprendendo conceitos Cypress', () => {
 
   });
 
-  it('3 - Verificando itens para compra', () => {
-    cy.visit('/');
+  it.only('3 - Verificando itens para compra', () => {
+    cy.visit('https://automationexercise.com/');
     cy.get('.features_items'); // acessando primeiro elemento filho do item
-    cy.get('.features_items').children().first();
-    cy.get('.features_items').children().last(); // acessando filhos de um elemento
-    cy.get('.features_items').children().eq(2); // acessando elemento de array
+    cy.get('.features_items').children().first(); // Captura o primeiro
+    cy.get('.features_items').children().last(); //capturando o ultimo elemento (Os cards))
+    cy.get('.features_items').children().eq(2); // acessando elemento de array no caso o terceiro elemento por meio do metodo "eq"
 
-    cy.get('[data-product-id="2"]') // pelo data-id
+    cy.get('[data-product-id="2"]') // pelo data-id o segundo botão, botão de adicionar ao carrinho
 
   })
 
