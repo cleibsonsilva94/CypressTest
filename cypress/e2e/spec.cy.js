@@ -1,11 +1,26 @@
 /// <reference types="Cypress" />
 describe('Aprendendo conceitos Cypress', () => {
 
-  it('1 - Usuário faz login com username e senha inválidos', () => {
-    cy.visit('/');
-    cy.get('div.shop-menu').contains('Login').should('have.attr','href', '/login').click();
+  it.only('1 - Usuário faz login com username e senha inválidos', () => {
+    //Primeiro exemplo. 
+    cy.visit('/'); //Visitando site
+    cy.get * ('div.shop-menu').contains('Login');//Clicando em "Login" por meio do pai dele. 
 
-    cy.contains('Login to your account').should('be.visible');
+    cy.contains('Login to Your account'); //verifico se esto na pág de login
+
+    cy.get('[data-qa="login-email"]').type('cleibson@gmail.com');
+
+    cy.get('[data-qa="login-password"]').type('123456');
+    cy.get('[data-qa="login-button"]').contains('Login');
+
+    cy.contains('Your email os password is incorrect!');
+  
+    
+    //ABAIXO VERSÕES MAIS COMPLEXAS
+    /*cy.visit('/'); //configuração
+    cy.get('div.shop-menu').contains('Login').click(); //Acessa o elemento pai 'div.shop-menu' e capturando pela string "Login"
+
+    cy.contains('Login to your account').should('be.visible');//verificando se estou na pág de login por meio da string e 
 
     cy.get('[data-qa="login-email"]')
       .type('teste@email.com')
@@ -29,38 +44,40 @@ describe('Aprendendo conceitos Cypress', () => {
     });
 
     // mesma validação acima
-    /*cy.get('[data-qa="login-button"]').should(($button) =>{
+    cy.get('[data-qa="login-button"]').should(($button) =>{
       expect($button).to.have.text('Login');
       expect($button).to.contain('Login');
       expect($button).to.be.visible;
       expect($button).to.have.attr('type', 'submit');
       expect($button).to.have.class('btn');
-    });*/
+    });
 
     //uso do alias para clicar no botão de login
     cy.get('@btnLogin').click();
 
     cy.contains('Your email or password is incorrect!');
+    */
   });
-
+    //PEIMRIRO TESTE. 
+    //Métodos de capturar elementos e teste basicamente tenta acessar a pagina inicial. 
     it('2 - Acessando home da página Automation Exercise', () => {
-    cy.visit('https://automationexercise.com/');
-    cy.contains('Automati');
+    cy.visit('/');
+    cy.contains('Automation'); //captura o logotipo da página para se certificar de que está na página principal. Usa para tal o método "Contains"
     cy.get('h1'); // acessando tag 
-    cy.get('h1').contains('Automat'); 
+    cy.get('h1').contains('Automation'); // Método "get" em associação ao método contains. 
 
     cy.get('.features_items');// verificar se a seção 'features items' existe na página inicial a partir da classe
-    //or
+    //ou
     cy.get('div.features_items');//tag + classe
 
   });
-
-  it.only('3 - Verificando itens para compra', () => {
-    cy.visit('https://automationexercise.com/');
+  //SEGUNDO TESTE 
+  it('3 - Verificando itens para compra', () => {
+    cy.visit('/');
     cy.get('.features_items'); // acessando primeiro elemento filho do item
     cy.get('.features_items').children().first(); // Captura o primeiro
-    cy.get('.features_items').children().last(); //capturando o ultimo elemento (Os cards))
-    cy.get('.features_items').children().eq(2); // acessando elemento de array no caso o terceiro elemento por meio do metodo "eq"
+    cy.get('.features_items').children().last(); //capturando o último elemento (Os cards)
+    cy.get('.features_items').children().eq(2); // acessando elemento de array no caso o terceiro elemento por meio do método "eq"
 
     cy.get('[data-product-id="2"]') // pelo data-id o segundo botão, botão de adicionar ao carrinho
 
