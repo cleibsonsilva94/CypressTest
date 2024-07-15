@@ -22,7 +22,7 @@ describe('Aprendendo conceitos Cypress', () => {
     cy.get('[data-product-id="2"]'); // pelo data-id o segundo botão, botão de adicionar ao carrinho
   });
   // TERCEIRO TESTE
-  it.only('1 - Usuário faz login com username e senha inválidos', () => {
+  it('1 - Usuário faz login com username e senha inválidos', () => {
     // setup
     cy.visit('/');
     cy.get('div.shop-menu').contains('Login').click();
@@ -69,17 +69,17 @@ describe('Aprendendo conceitos Cypress', () => {
     cy.contains('Your email or password is incorrect!');
     */
   });
-
-  it('4 - Colocar item no carrinho e continuar comprando', () => {
+    //QUARTO TESTE NÃO EXECUTADO E POUCO ENTENDIDO 
+  it.only('4 - Colocar item no carrinho e continuar comprando', () => {
     cy.visit('/');
     cy.get('[data-product-id="2"]').contains('Add to cart').click();
-    cy.get('#cartModal').contains('Added');
+    cy.get('#cartModal').contains('Added'); // # usado para ID exatamente pq ele não é uma class
     cy.get('button.close-modal', { timeout: 5000 }).click();
   });
 
-  it('5 - Acessando página de produtos - usando intercept', () => {
+  it('5 - Acessando página de produtos - usando intercept', () => { //Metodo muito utilizado nos testes com interface grafica
     cy.visit('/');
-    cy.intercept('GET', '/products').as('getProdutos');
+    cy.intercept('GET', '/products').as('getProdutos'); //Interceprtando a roda de "products"
     cy.get('.navbar-nav').contains('Products').then(($btn) => {
       cy.wrap($btn).click();
     });
