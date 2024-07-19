@@ -1,5 +1,10 @@
 /// <reference types="Cypress" />
 describe('Aprendendo conceitos Cypress', () => {
+
+  /*
+  PRIMEIROS 2 TESTES COM CONCEITOS BASICOS 
+  */
+
   // PRIMEIRO TESTE.
   it('2 - Acessando home da página Automation Exercise', () => {
     cy.visit('/');
@@ -21,7 +26,11 @@ describe('Aprendendo conceitos Cypress', () => {
 
     cy.get('[data-product-id="2"]'); // pelo data-id o segundo botão, botão de adicionar ao carrinho
   });
-  // TERCEIRO TESTE
+
+  /*
+
+  Testes explorados pela professora. 
+
   it('1 - Usuário faz login com username e senha inválidos', () => {
     // setup
     cy.visit('/');
@@ -35,7 +44,7 @@ describe('Aprendendo conceitos Cypress', () => {
     cy.contains('Your email or password is incorrect!');
 
     // ABAIXO VERSÕES MAIS COMPLEXAS
-    /*
+  
     cy.visit('/'); // configuração
     cy.get('div.shop-menu').contains('Login').click(); // Acessa o elemento pai 'div.shop-menu' e capturando pela string "Login"
     cy.contains('Login to your account').should('be.visible'); // verificando se estou na pág de login por meio da string
@@ -67,9 +76,9 @@ describe('Aprendendo conceitos Cypress', () => {
     cy.get('@btnLogin').click();
 
     cy.contains('Your email or password is incorrect!');
-    */
+    
   });
-    //QUARTO TESTE NÃO EXECUTADO E POUCO ENTENDIDO 
+
   it.only('4 - Colocar item no carrinho e continuar comprando', () => {
     cy.visit('/');
     cy.get('[data-product-id="2"]').contains('Add to cart').click();
@@ -85,11 +94,11 @@ describe('Aprendendo conceitos Cypress', () => {
     });
     cy.wait('@getProdutos').its('response.statusCode').should('eq', 200);
 
-    /*
+    
     cy.wait('@getProdutos').should((interception) => {
       expect(interception.response.statusCode).to.be.eq(200)
     });
-    */
+    
   });
 
   it('6 - GET Produtos retorna 200 - usando request', () => {
@@ -101,4 +110,21 @@ describe('Aprendendo conceitos Cypress', () => {
       expect(body.products).to.have.length.above(1);
     });
   });
+
+  */
+
+  //ABAIXO TESTES EXERCITANDO O CONCEIRO DE ASSERÇÕES
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
