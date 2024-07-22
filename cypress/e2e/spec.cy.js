@@ -19,6 +19,20 @@ describe('Aprendendo conceitos Cypress', () => {
     cy.get('[data-product-id="2"]');
   });
 
+  it('3 - Usuário faz login com username e senha inválidos', () => {
+    cy.visit('/');
+    cy.get('div.shop.menu').contains('login').should('have.attr', 'href', '/login').click(); 
+
+    cy.contains('Login to your account').should('be.visible'); 
+    cy.get('[data-qa="login-email"]')
+      .type('Test@emial.com')
+      .should('be.visible')
+      .and('have.attr', 'placeholder', 'Email Address')
+      .and('have.prop', 'required');
+
+    cy.get('[data-qa="login-password"]').type('12345').should('have.value', '12345');
+  });
+
   
 
 });
