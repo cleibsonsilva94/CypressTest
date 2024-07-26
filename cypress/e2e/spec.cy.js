@@ -19,11 +19,11 @@ describe('Aprendendo conceitos Cypress', () => {
     cy.get('[data-product-id="2"]');
   });
 
-  it('3 - Usuário faz login com username e senha inválidos', () => {
+  it.only('3 - Usuário faz login com username e senha inválidos', () => {
     cy.visit('/');
-    cy.get('div.shop.menu').contains('login').should('have.attr', 'href', '/login').click(); 
+    cy.get('div.shop.menu').contains('login').should('have.attr', 'href', '/login').click();
 
-    cy.contains('Login to your account').should('be.visible'); 
+    cy.contains('Login to your account').should('be.visible');
     cy.get('[data-qa="login-email"]')
       .type('Test@emial.com')
       .should('be.visible')
@@ -31,10 +31,10 @@ describe('Aprendendo conceitos Cypress', () => {
       .and('have.prop', 'required');
 
     cy.get('[data-qa="login-password"]').type('12345').should('have.value', '12345');
-  });
- 
-  cy.get('@btnLogin').click(); 
 
-  cy.contains('Your email or password is incorrect!');
+    cy.get('@btnLogin').click();
+
+    cy.contains('Your email or password is incorrect!');
+  });
 
 });

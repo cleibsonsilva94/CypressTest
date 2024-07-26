@@ -2,9 +2,9 @@ const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
   e2e: {
-    baseUrl: 'https://automationexercise.com/', //Configurando para que testes sempre usem a mesma URL 
+    baseUrl: 'https://automationexercise.com/', // Configurando a URL base para que os testes sempre usem a mesma URL
     setupNodeEvents(on, config) {
-      // implement node event listeners here
+      // Implementar listeners de eventos do Node aqui
     },
   },
 });
