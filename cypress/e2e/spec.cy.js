@@ -32,9 +32,17 @@ describe('Aprendendo conceitos Cypress', () => {
 
     cy.get('[data-qa="login-password"]').type('12345').should('have.value', '12345');
 
-    cy.get('@btnLogin').click();
+    cy.get('[data-qa="login-password"]').as('btnLogin').then(($button) => {
 
-    cy.contains('Your email or password is incorrect!');
+      expect($button).to.have.text('Login');
+      expect($button).to.contains('Login');
+      expect($button).to.be.visible;
+      expect($button).to.have.attr('type', 'submit');
+      expect($button).to.have.class('btn');
+
+      cy.get('@btnLogin').click();
+
+      cy.contains('Your email or password is incorrect!');
+    });
+
   });
-
-});
