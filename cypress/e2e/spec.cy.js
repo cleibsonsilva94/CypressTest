@@ -21,7 +21,7 @@ describe('Aprendendo conceitos Cypress', () => {
 
   it.only('3 - Usuário faz login com username e senha inválidos', () => {
     cy.visit('/');
-    cy.get('div.shop.menu').contains('login').should('have.attr', 'href', '/login').click();
+    cy.get('div.shop-menu').contains('Login').should('have.attr', 'href', '/login').click();
 
     cy.contains('Login to your account').should('be.visible');
     cy.get('[data-qa="login-email"]')
