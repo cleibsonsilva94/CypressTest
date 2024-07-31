@@ -45,4 +45,18 @@ describe('Aprendendo conceitos Cypress', () => {
     cy.contains('Your email or password is incorrect!')
   });
 
+  it('4 - Acessando página de produtos - usando intercept', () => {
+    cy.visit('/');
+    cy.intercept('GET','/products').as('getProducts')
+
+    cy.get('.navbar-nav').contains('Products').then(($btn) => {
+
+      cy.wrap($btn).click();
+
+    });
+
+    cy.wait('@getProdutos').its('responseStatusCode').should('eq',200);
+      
+  });
+
 });
