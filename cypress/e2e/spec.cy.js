@@ -66,16 +66,16 @@ describe('Aprendendo conceitos Cypress', () => {
 
     it('4 - Acessando página de produtos - usando intercept', () => {
       cy.visit('/');
-      cy.intercept('GET','/products').as('getProducts')
-  
+      cy.intercept('GET', '/products').as('getProducts')
+
       cy.get('.navbar-nav').contains('Products').then(($btn) => {
-  
+
         cy.wrap($btn).click();
-  
+
       });
-  
-      cy.wait('@getProdutos').its('responseStatusCode').should('eq',200);
-        
+
+      cy.wait('@getProdutos').its('responseStatusCode').should('eq', 200);
+
     });
 
   });
@@ -86,106 +86,119 @@ describe('Aprendendo conceitos Cypress', () => {
 
 
 
- /*
-    
-    // EXEMPLO 2 DE VALIDAÇÃO USANDO -- "should"
-  });
-  // Mesma validação acima.
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+   
+   // EXEMPLO 2 DE VALIDAÇÃO USANDO -- "should"
+ });
+ // Mesma validação acima.
 cy.get('[data-qa="login-button"]').should(($button) => { // Mesma validação usando o "should"
-    expect($button).to.have.text('Login'); // Validações idênticas
-    expect($button).to.contain('Login');
-    expect($button).to.be.visible;
-    expect($button).to.have.attr('type', 'submit');
-    expect($button).to.have.class('btn');
-  }); // A única diferença é que ele permitiria no final dessa linha um click no fim do encadeamento.
+   expect($button).to.have.text('Login'); // Validações idênticas
+   expect($button).to.contain('Login');
+   expect($button).to.be.visible;
+   expect($button).to.have.attr('type', 'submit');
+   expect($button).to.have.class('btn');
+ }); // A única diferença é que ele permitiria no final dessa linha um click no fim do encadeamento.
 
 
-    // Uso do alias para clicar no botão de login.
-    cy.get('@btnLogin').click(); // Uso do apelido para clicar por meio do método get
+   // Uso do alias para clicar no botão de login.
+   cy.get('@btnLogin').click(); // Uso do apelido para clicar por meio do método get
 
-    cy.contains('Your email or password is incorrect!');
+   cy.contains('Your email or password is incorrect!');
 
-  });
+ });
 
 TESTES EXPLORADOS PELA PROFESSORA.
 
 it('1 - Usuário faz login com username e senha inválidos', () => {
-  // Setup
-  cy.visit('/');
-  cy.get('div.shop-menu').contains('Login').click();
-  cy.contains('Login to your account');
-  // Preenchendo campos
-  cy.get('[data-qa="login-email"]').type('cleibson@gmail.com');
-  cy.get('[data-qa="login-password"]').type('123456');
-  cy.get('[data-qa="login-button"]').contains('Login').click();
-  // Verificação final
-  cy.contains('Your email or password is incorrect!');
+ // Setup
+ cy.visit('/');
+ cy.get('div.shop-menu').contains('Login').click();
+ cy.contains('Login to your account');
+ // Preenchendo campos
+ cy.get('[data-qa="login-email"]').type('cleibson@gmail.com');
+ cy.get('[data-qa="login-password"]').type('123456');
+ cy.get('[data-qa="login-button"]').contains('Login').click();
+ // Verificação final
+ cy.contains('Your email or password is incorrect!');
 
-  // ABAIXO VERSÕES MAIS COMPLEXAS.
+ // ABAIXO VERSÕES MAIS COMPLEXAS.
 
-  cy.visit('/'); // Configuração
-  cy.get('div.shop-menu').contains('Login').click(); // Acessa o elemento pai 'div.shop-menu' e captura pela string "Login".
-  cy.contains('Login to your account').should('be.visible'); // Verificando se estou na página de login por meio da string.
-  cy.get('[data-qa="login-email"]')
-    .type('teste@email.com')
-    .should('be.visible')
-    .and('have.attr', 'placeholder', 'Email Address')
-    .and('have.prop', 'required');
-  cy.get('[data-qa="login-password"]').type('123456').should('have.value', '123456');
-  cy.get('[data-qa="login-button"]').as('btnLogin').then(($button) => {
-    expect($button).to.have.text('Login');
-    expect($button).to.contain('Login');
-    expect($button).to.be.visible;
-    expect($button).to.have.attr('type', 'submit');
-    expect($button).to.have.class('btn');
-    cy.wrap($button).click();
-  });
+ cy.visit('/'); // Configuração
+ cy.get('div.shop-menu').contains('Login').click(); // Acessa o elemento pai 'div.shop-menu' e captura pela string "Login".
+ cy.contains('Login to your account').should('be.visible'); // Verificando se estou na página de login por meio da string.
+ cy.get('[data-qa="login-email"]')
+   .type('teste@email.com')
+   .should('be.visible')
+   .and('have.attr', 'placeholder', 'Email Address')
+   .and('have.prop', 'required');
+ cy.get('[data-qa="login-password"]').type('123456').should('have.value', '123456');
+ cy.get('[data-qa="login-button"]').as('btnLogin').then(($button) => {
+   expect($button).to.have.text('Login');
+   expect($button).to.contain('Login');
+   expect($button).to.be.visible;
+   expect($button).to.have.attr('type', 'submit');
+   expect($button).to.have.class('btn');
+   cy.wrap($button).click();
+ });
 
-  // Mesma validação acima.
-  cy.get('[data-qa="login-button"]').should(($button) => {
-    expect($button).to.have.text('Login');
-    expect($button).to.contain('Login');
-    expect($button).to.be.visible;
-    expect($button).to.have.attr('type', 'submit');
-    expect($button).to.have.class('btn');
-  });
+ // Mesma validação acima.
+ cy.get('[data-qa="login-button"]').should(($button) => {
+   expect($button).to.have.text('Login');
+   expect($button).to.contain('Login');
+   expect($button).to.be.visible;
+   expect($button).to.have.attr('type', 'submit');
+   expect($button).to.have.class('btn');
+ });
 
-  // Uso do alias para clicar no botão de login.
-  cy.get('@btnLogin').click();
+ // Uso do alias para clicar no botão de login.
+ cy.get('@btnLogin').click();
 
-  cy.contains('Your email or password is incorrect!');
-  
+ cy.contains('Your email or password is incorrect!');
+ 
 });
 
 it.only('4 - Colocar item no carrinho e continuar comprando', () => {
-  cy.visit('/');
-  cy.get('[data-product-id="2"]').contains('Add to cart').click();
-  cy.get('#cartModal').contains('Added'); // # usado para ID, exatamente porque ele não é uma classe.
-  cy.get('button.close-modal', { timeout: 5000 }).click();
+ cy.visit('/');
+ cy.get('[data-product-id="2"]').contains('Add to cart').click();
+ cy.get('#cartModal').contains('Added'); // # usado para ID, exatamente porque ele não é uma classe.
+ cy.get('button.close-modal', { timeout: 5000 }).click();
 });
 
 it('5 - Acessando página de produtos - usando intercept', () => { // Método muito utilizado nos testes com interface gráfica.
-  cy.visit('/');
-  cy.intercept('GET', '/products').as('getProdutos'); // Interceptando a rota de "products".
-  cy.get('.navbar-nav').contains('Products').then(($btn) => {
-    cy.wrap($btn).click();
-  });
-  cy.wait('@getProdutos').its('response.statusCode').should('eq', 200);
+ cy.visit('/');
+ cy.intercept('GET', '/products').as('getProdutos'); // Interceptando a rota de "products".
+ cy.get('.navbar-nav').contains('Products').then(($btn) => {
+   cy.wrap($btn).click();
+ });
+ cy.wait('@getProdutos').its('response.statusCode').should('eq', 200);
 
-  cy.wait('@getProdutos').should((interception) => {
-    expect(interception.response.statusCode).to.be.eq(200);
-  });
-  
+ cy.wait('@getProdutos').should((interception) => {
+   expect(interception.response.statusCode).to.be.eq(200);
+ });
+ 
 });
 
 it('6 - GET Produtos retorna 200 - usando request', () => {
-  cy.request('GET', 'api/productsList').should((response) => {
-    expect(response.status).to.be.eq(200);
-    expect(response.body).not.to.be.empty;
-    let body = JSON.parse(response.body);
-    expect(body.products).to.be.an('array');
-    expect(body.products).to have.length.above(1);
-  });
+ cy.request('GET', 'api/productsList').should((response) => {
+   expect(response.status).to.be.eq(200);
+   expect(response.body).not.to.be.empty;
+   let body = JSON.parse(response.body);
+   expect(body.products).to.be.an('array');
+   expect(body.products).to have.length.above(1);
+ });
 });
 
 */
