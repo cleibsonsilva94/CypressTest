@@ -1,18 +1,22 @@
 {
-  "name": "cypress",
+  "name": "cypresstest",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cypress opejmn"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "CypressTest"
+    "url": "git+ssh://git@github.com/cleibsonsilva94/CypressTestes.git"
   },
-  "author": "Cleibson Silva",
+  "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cleibsonsilva94/CypressTestes/issues"
+  },
+  "homepage": "https://github.com/cleibsonsilva94/CypressTestes#readme",
   "devDependencies": {
-    "cypress": "^13.12.0"
+    "cypress": "^13.13.0"
   }
 }
