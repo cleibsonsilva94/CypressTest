@@ -62,27 +62,28 @@ describe('Aprendendo conceitos Cypress', () => {
 
     });
 
-    // 4 VALIDAÇÕES POR MEIO DE - API
+    // 4 VALIDAÇÕES POR MEIO DE API
+    // Requisições
 
     it('4 - Acessando página de produtos - usando intercept', () => {
       cy.visit('/');
-      cy.intercept('GET', '/products').as('getProducts')
+      cy.intercept('GET', '/products').as('getProducts'); // Intercept é uma preparação, dizendo que você quer interceptar uma requisição e faz um alias.
 
-      cy.get('.navbar-nav').contains('Products').then(($btn) => {
+      cy.get('.navbar-nav').contains('Products').then(($btn) => { // Usa-se o then para fazer uma ação em cima do elemento passado pelo contains (não só uma validação, mas uma ação. Se fosse só uma validação, poderia usar o "should").
 
-        cy.wrap($btn).click();
+        cy.wrap($btn).click(); // Usando o .wrap
 
       });
 
-      cy.wait('@getProdutos').its('responseStatusCode').should('eq', 200);
+      cy.wait('@getProducts').its('response.statusCode').should('eq', 200); // Usando o comando wait para esperar a requisição acontecer, requisição que está sendo recuperada. "its" recupera uma propriedade específica passada pelo comando anterior.
 
     });
 
+
   });
 
+
 });
-
-
 
 
 
