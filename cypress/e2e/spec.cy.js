@@ -19,7 +19,7 @@ describe('Aprendendo conceitos Cypress', () => {
     cy.get('[data-product-id="2"]');
   });
 
-  it.only('3 - Usuário faz login com username e senha inválidos', () => {
+  it('3 - Usuário faz login com username e senha inválidos', () => {
     cy.visit('/');
     cy.get('div.shop-menu').contains('Login').should('have.attr', 'href', '/login').click();
 
@@ -45,7 +45,7 @@ describe('Aprendendo conceitos Cypress', () => {
     cy.contains('Your email or password is incorrect!')
   });
 
-  it('4 - Acessando página de produtos - usando intercept', () => {
+  it.only('4 - Acessando página de produtos - usando intercept', () => {
     cy.visit('/');
     cy.intercept('GET','/products').as('getProducts')
 
@@ -55,8 +55,8 @@ describe('Aprendendo conceitos Cypress', () => {
 
     });
 
-    cy.wait('@getProdutos').its('responseStatusCode').should('eq',200);
-      
+    cy.wait('@getProducts').its('response.statusCode').should('eq',200);
+
   });
 
 });
