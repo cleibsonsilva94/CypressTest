@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 describe('Aprendendo conceitos Cypress', () => {
-
+// COMANDO P/ RODAR: npx cypress open
   it('1 - Acessando home da página Automation Exercise', () => {
     cy.visit('/');
     cy.contains('Automation');
@@ -55,7 +55,11 @@ describe('Aprendendo conceitos Cypress', () => {
 
     });
 
-    cy.wait('@getProducts').its('response.statusCode').should('eq',200);
+    //cy.wait('@getProducts').its('response.statusCode').should('eq',200);
+
+    cy.wait('@getProducts').should((interception) => {
+      expect(interception.response.statusCode).to.be.eq(200)
+    });
 
   });
 
